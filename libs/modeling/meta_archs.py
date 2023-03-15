@@ -496,6 +496,7 @@ class PtTransformer(nn.Module):
             for feat, pad_feat in zip(feats, batched_inputs):
                 pad_feat[..., :feat.shape[-1]].copy_(feat)
             if self.input_noise > 0:
+                # trick, adding noise slightly increases the variability between input features.
                 noise = torch.randn_like(batched_inputs) * self.input_noise
                 batched_inputs += noise
         else:
