@@ -1,0 +1,65 @@
+dataset_name: hacs
+train_split: [ 'training' ]
+val_split: [ 'validation' ]
+dataset: {
+  json_file: ./data/hacs/annotations/HACS_segments_v1.1.1.json,
+  feat_folder: ./data/hacs/i3d_feature,
+  file_ext: .npy,
+  num_classes: 200,
+  input_dim: 2048,
+  feat_stride: 1,
+  num_frames: 1,
+  default_fps: 2,
+  trunc_thresh: 0.5,
+  crop_ratio: [ 0.9, 1.0 ],
+  max_seq_len: 512,
+  backbone_type: 'i3d'
+}
+model: {
+  fpn_type: identity,
+  max_buffer_len_factor: 1.0,
+  backbone_arch: [ 2, 2, 6 ],
+  n_sgp_win_size: 15,
+  regression_range: [ [ 0, 4 ], [ 4, 8 ], [ 8, 16 ], [ 16, 32 ], [ 32, 64 ], [ 64, 128 ], [ 128, 10000 ] ],
+  embd_dim: 1024,
+  sgp_mlp_dim: 1024,
+  fpn_dim: 1024,
+  head_dim: 1024,
+  head_kernel_size: 5,
+  boudary_kernel_size: 1,
+  use_abs_pe: True,
+  num_bins: 12,
+  iou_weight_power: 1,
+  input_noise: 0.,
+  k: 1.2,
+  init_conv_vars: 0.1,
+}
+opt: {
+  learning_rate: 0.001,
+  eta_min: 0.0002,
+  warmup_epochs: 10,
+  epochs: 3,
+  weight_decay: 0.03,
+}
+loader: {
+  batch_size: 16,
+}
+train_cfg: {
+  init_loss_norm: 400,
+  clip_grad_l2norm: 1.0,
+  cls_prior_prob: 0.01,
+  center_sample: radius,
+  center_sample_radius: 1.5,
+  label_smoothing: 0.1,
+}
+
+# similar to THUMOS
+test_cfg: {
+  voting_thresh: 0.95,
+  pre_nms_topk: 2000,
+  max_seg_num: 250,
+  min_score: 0.001,
+  multiclass_nms: True,
+  nms_sigma: 0.75,
+}
+output_folder: ./ckpt/

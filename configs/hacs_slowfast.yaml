@@ -1,0 +1,66 @@
+dataset_name: hacs
+train_split: [ 'training' ]
+val_split: [ 'validation' ]
+dataset: {
+  json_file: ./data/hacs/annotations/HACS_segments_v1.1.1_slowfast.json,
+  feat_folder: ./data/hacs/slowfast_feature,
+  file_ext: .pkl,
+  num_classes: 200,
+  input_dim: 2304,
+  feat_stride: 8,
+  num_frames: 32,
+  default_fps: 15,
+  trunc_thresh: 0.5,
+  crop_ratio: [ 0.9, 1.0 ],
+  max_seq_len: 960,
+  backbone_type: 'slowfast'
+}
+model: {
+  fpn_type: identity,
+  max_buffer_len_factor: 1.0,
+  backbone_arch: [ 2, 2, 5 ],
+  n_sgp_win_size: 3,
+  regression_range: [ [ 0, 4 ], [ 4, 8 ], [ 8, 16 ], [ 16, 32 ], [ 32, 64 ], [ 64, 10000 ] ],
+  embd_dim: 1024,
+  sgp_mlp_dim: 1024,
+  fpn_dim: 1024,
+  head_dim: 1024,
+  head_kernel_size: 5,
+  boudary_kernel_size: 1,
+  use_abs_pe: True,
+  num_bins: 14,
+  iou_weight_power: 1,
+  input_noise: 0.2,
+  use_trident_head: True,
+  k: 1.2,
+  init_conv_vars: 0.1,
+}
+opt: {
+  learning_rate: 0.001,
+  eta_min: 0.0005,
+  warmup_epochs: 7,
+  epochs: 4,
+  weight_decay: 0.03,
+}
+loader: {
+  batch_size: 16,
+}
+train_cfg: {
+  init_loss_norm: 400,
+  clip_grad_l2norm: 0.5,
+  cls_prior_prob: 0.01,
+  center_sample: radius,
+  center_sample_radius: 1.5,
+  label_smoothing: 0.1,
+}
+
+# similar to THUMOS
+test_cfg: {
+  voting_thresh: 0.95,
+  pre_nms_topk: 2000,
+  max_seg_num: 250,
+  min_score: 0.001,
+  multiclass_nms: True,
+  nms_sigma: 0.75,
+}
+output_folder: ./ckpt/
