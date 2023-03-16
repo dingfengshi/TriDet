@@ -136,7 +136,7 @@ The mean average precision (mAP) results for each dataset are:
 
 ## Test
 
-We offer pre-trained models for each dataset, which you can download the chechpoints
+We offer pre-trained models for each dataset, which you can download the checkpoints
 from [Google Drive](https://drive.google.com/drive/folders/1eVROG6z-vHtm4AnXsh4N8ruUKkAidLqZ?usp=sharing). The command
 for test is
 
