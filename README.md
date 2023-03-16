@@ -9,7 +9,7 @@
 ## Overview
 
 This repository contains the code for _TriDet: Temporal Action Detection with Relative Boundary
-Modeling_ [paper](https://arxiv.org/abs/2303.07347), which has been accepted for CVPR2023. Our code is built upon the
+Modeling_ [paper](https://arxiv.org/abs/2303.07347), which has been accepted at CVPR2023. Our code is built upon the
 codebase from [ActionFormer](https://github.com/happyharrycn/actionformer_release)
 and [Detectron2](https://github.com/facebookresearch/detectron2), and we would like to express our
 gratitude for their outstanding work.
@@ -25,7 +25,7 @@ To quickly get start with the model architecture, you can focus mainly on the fo
 - 2023.3.16 We release the code and the
   pretrained [checkpoints](https://drive.google.com/drive/folders/1eVROG6z-vHtm4AnXsh4N8ruUKkAidLqZ?usp=sharing)
 - 2023.3.14 The pre-print version of our [paper](https://arxiv.org/abs/2303.07347) is updated to Arxiv.
-- 2023.2.28 Our paper has been accepted for CVPR2023.
+- 2023.2.28 Our paper has been accepted at CVPR2023.
 
 ## Installation
 
