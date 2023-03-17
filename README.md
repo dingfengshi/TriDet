@@ -23,7 +23,7 @@ To quickly get start with the model architecture, you can focus mainly on the fo
 ## Update Log
 
 - 2023.3.16 We release the code and the
-  pretrained [checkpoints](https://drive.google.com/drive/folders/1eVROG6z-vHtm4AnXsh4N8ruUKkAidLqZ?usp=sharing)
+  pretrained [checkpoints](https://drive.google.com/drive/folders/1eVROG6z-vHtm4AnXsh4N8ruUKkAidLqZ?usp=sharing).
 - 2023.3.14 The pre-print version of our [paper](https://arxiv.org/abs/2303.07347) is updated to Arxiv.
 - 2023.2.28 Our paper has been accepted for CVPR2023.
 
