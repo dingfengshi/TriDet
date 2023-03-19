@@ -2,6 +2,7 @@
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/tridet-temporal-action-detection-with/temporal-action-localization-on-hacs)](https://paperswithcode.com/sota/temporal-action-localization-on-hacs?p=tridet-temporal-action-detection-with)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/tridet-temporal-action-detection-with/temporal-action-localization-on-thumos14)](https://paperswithcode.com/sota/temporal-action-localization-on-thumos14?p=tridet-temporal-action-detection-with)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/tridet-temporal-action-detection-with/temporal-action-localization-on-epic-kitchens)](https://paperswithcode.com/sota/temporal-action-localization-on-epic-kitchens?p=tridet-temporal-action-detection-with)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/tridet-temporal-action-detection-with/temporal-action-localization-on-activitynet)](https://paperswithcode.com/sota/temporal-action-localization-on-activitynet?p=tridet-temporal-action-detection-with)
 
 ![Image Title](framework.jpg)
