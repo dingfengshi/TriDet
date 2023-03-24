@@ -30,7 +30,7 @@ To quickly get start with the model architecture, you can focus mainly on the fo
 
 ## Installation
 
-1. Please ensure that you have installed PyTorch and CUDA. (This code requires PyTorch version >= 1.11)
+1. Please ensure that you have installed PyTorch and CUDA. **(This code requires PyTorch version >= 1.11)**
 
 3. Install the required packages by running the following command:
 
