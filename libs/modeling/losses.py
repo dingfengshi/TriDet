@@ -52,57 +52,6 @@ def sigmoid_focal_loss(
     return loss
 
 
-def quality_focal_loss(
-        pred,  # (n, class)
-        label,  # (n) 0, 1-80: 0 is neg, 1-80 is positive
-        score,  # (n) reg target 0-1, only positive is good
-        weight=None,
-        beta=2.0,
-        reduction='mean',
-        avg_factor=None):
-    # all goes to 0
-    pred_sigmoid = pred.sigmoid()
-
-    pt = pred_sigmoid
-    zerolabel = pt.new_zeros(pt.shape)
-    loss = F.binary_cross_entropy_with_logits(
-        pred, zerolabel, reduction='none') * pt.pow(beta)
-    # loss = F.binary_cross_entropy(
-    #     pred_sigmoid, zerolabel, reduction='none') * pt.pow(beta)
-
-    pos = (label.sum(-1) > 1e-3).nonzero().squeeze(1)
-    a = pos
-    label_n = torch.argmax(label, dim=-1)
-    b = label_n[pos].long()
-
-    # positive goes to bbox quality
-    pt = score - pred_sigmoid[a, b]
-    loss[a, b] = F.binary_cross_entropy_with_logits(
-        pred[a, b], score, reduction='none') * pt.pow(beta)
-
-    # loss[a, b] = F.binary_cross_entropy(
-    #     pred_sigmoid[a, b], score, reduction='none') * pt.pow(beta)
-    if reduction=='sum':
-        loss = loss.sum()
-    return loss
-
-
-@torch.jit.script
-def distribution_focal_loss(
-        pred: torch.Tensor,
-        label: torch.Tensor) -> torch.Tensor:
-    disl = label.long()
-    disr = disl + 1
-
-    wl = disr.float() - label
-    wr = label - disl.float()
-
-    loss = F.cross_entropy(pred, disl, reduction='none') * wl \
-           + F.cross_entropy(pred, disr, reduction='none') * wr
-    loss = loss.mean()
-    return loss
-
-
 @torch.jit.script
 def ctr_giou_loss_1d(
         input_offsets: torch.Tensor,
