@@ -385,6 +385,9 @@ class PtTransformer(nn.Module):
             return out_offsets
 
         else:
+            # Make an adaption for train and validation, when training, the out_offsets is a list with feature outputs
+            # from each FPN level. Each feature with shape [batchsize, T_level, (Num_bin+1)x2].
+            # For validation, the out_offsets is a feature with shape [T_level, (Num_bin+1)x2]
             if self.training:
                 out_offsets = torch.cat(out_offsets, dim=1)
                 out_offsets = out_offsets.view(out_offsets.shape[:2] + (2, -1))
@@ -824,8 +827,10 @@ class PtTransformer(nn.Module):
             )
             cls_idxs = torch.fmod(topk_idxs, self.num_classes)
 
-            # 3. gather predicted offsets
-            # offsets = offsets_i[pt_idxs]
+            # 3. For efficiency, pad the boarder head with num_bins zeros (Pad left for start branch and Pad right for end branch).
+            # Then we re-arrange the boundary branch output to
+            # [class_num, T, num_bins + 1 (the neighbour bin for each instant)].
+            # In this way, the output can be directly added to the center offset later.
 
             if self.use_trident_head:
                 # pad the boarder
@@ -846,6 +851,7 @@ class PtTransformer(nn.Module):
 
             decoded_offsets = self.decode_offset(offsets_i, left, right)
 
+            # pick topk output from the prediction
             if self.use_trident_head:
                 offsets = decoded_offsets[cls_idxs, pt_idxs]
             else:
