@@ -33,7 +33,7 @@ To quickly get start with the model architecture, you can focus mainly on the fo
 1. Please ensure that you have installed PyTorch and CUDA. **(This code requires PyTorch version >= 1.11. We use
    version=1.11.0 in our experiments)**
 
-* We conduct all our experiments on a single A100 GPU and the results may vary slightly depending on the type of GPU used.
+* We conduct all our experiments on a single A100 GPU and the training results may vary depending on the type of GPU used.
 
 2. Install the required packages by running the following command:
 
