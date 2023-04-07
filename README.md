@@ -30,12 +30,12 @@ To quickly get start with the model architecture, you can focus mainly on the fo
 
 ## Installation
 
-1. Please ensure that you have installed PyTorch and CUDA. **(This code requires PyTorch version >= 1.11)**
+1. Please ensure that you have installed PyTorch and CUDA. **(This code requires PyTorch version >= 1.11. We use version=1.11.0 in our experiments)**
 
 3. Install the required packages by running the following command:
 
 ```shell
-pip install pyyaml pandas h5py joblib matplotlib
+pip install  -r requirements.txt
 ```
 
 3. Install NMS
