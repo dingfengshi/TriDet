@@ -30,9 +30,12 @@ To quickly get start with the model architecture, you can focus mainly on the fo
 
 ## Installation
 
-1. Please ensure that you have installed PyTorch and CUDA. **(This code requires PyTorch version >= 1.11. We use version=1.11.0 in our experiments)**
+1. Please ensure that you have installed PyTorch and CUDA. **(This code requires PyTorch version >= 1.11. We use
+   version=1.11.0 in our experiments)**
 
-3. Install the required packages by running the following command:
+* We conduct all our experiments on a single A100 GPU and the results may vary slightly depending on the type of GPU used.
+
+2. Install the required packages by running the following command:
 
 ```shell
 pip install  -r requirements.txt
@@ -145,7 +148,8 @@ for test is
 python eval.py ./configs/CONFIG_FILE PATH_TO_CHECKPOINT
 ```
 
-## Contact 
+## Contact
+
 If you have any questions about the code, feel free to contact shidingfeng at buaa dot edu dot cn.
 
 ## References
