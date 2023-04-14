@@ -8,7 +8,7 @@ DEFAULTS = {
     "devices": ['cuda:0'],  # default: single gpu
     "train_split": ('training',),
     "val_split": ('validation',),
-    "model_name": "LocPointTransformer",
+    "model_name": "TriDet",
     "dataset": {
         # temporal stride of the feats
         "feat_stride": 16,

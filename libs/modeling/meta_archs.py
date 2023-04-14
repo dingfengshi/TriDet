@@ -9,7 +9,7 @@ from .models import register_meta_arch, make_backbone, make_neck, make_generator
 from ..utils import batched_nms
 
 
-class PtTransformerClsHead(nn.Module):
+class ClsHead(nn.Module):
     """
     1D Conv heads for classification
     """
@@ -95,7 +95,7 @@ class PtTransformerClsHead(nn.Module):
         return out_logits
 
 
-class PtTransformerRegHead(nn.Module):
+class RegHead(nn.Module):
     """
     Shared 1D Conv heads for regression
     Simlar logic as PtTransformerClsHead with separated implementation for clarity
@@ -168,8 +168,8 @@ class PtTransformerRegHead(nn.Module):
         return out_offsets
 
 
-@register_meta_arch("LocPointTransformer")
-class PtTransformer(nn.Module):
+@register_meta_arch("TriDet")
+class TriDet(nn.Module):
     """
         Transformer based model for single stage action localization
     """
@@ -322,7 +322,7 @@ class PtTransformer(nn.Module):
         )
 
         # classfication and regerssion heads
-        self.cls_head = PtTransformerClsHead(
+        self.cls_head = ClsHead(
             fpn_dim, head_dim, self.num_classes,
             kernel_size=head_kernel_size,
             prior_prob=self.train_cls_prior_prob,
@@ -332,7 +332,7 @@ class PtTransformer(nn.Module):
         )
 
         if use_trident_head:
-            self.start_head = PtTransformerClsHead(
+            self.start_head = ClsHead(
                 fpn_dim, head_dim, self.num_classes,
                 kernel_size=boudary_kernel_size,
                 prior_prob=self.train_cls_prior_prob,
@@ -341,7 +341,7 @@ class PtTransformer(nn.Module):
                 empty_cls=train_cfg['head_empty_cls'],
                 detach_feat=True
             )
-            self.end_head = PtTransformerClsHead(
+            self.end_head = ClsHead(
                 fpn_dim, head_dim, self.num_classes,
                 kernel_size=boudary_kernel_size,
                 prior_prob=self.train_cls_prior_prob,
@@ -351,7 +351,7 @@ class PtTransformer(nn.Module):
                 detach_feat=True
             )
 
-            self.reg_head = PtTransformerRegHead(
+            self.reg_head = RegHead(
                 fpn_dim, head_dim, len(self.fpn_strides),
                 kernel_size=head_kernel_size,
                 num_layers=head_num_layers,
@@ -359,7 +359,7 @@ class PtTransformer(nn.Module):
                 num_bins=num_bins
             )
         else:
-            self.reg_head = PtTransformerRegHead(
+            self.reg_head = RegHead(
                 fpn_dim, head_dim, len(self.fpn_strides),
                 kernel_size=head_kernel_size,
                 num_layers=head_num_layers,
