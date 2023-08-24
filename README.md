@@ -157,11 +157,12 @@ If you have any questions about the code, feel free to contact shidingfeng at bu
 If you find this work helpful, please consider citing our paper
 
 ```
-@article{shi2023tridet,
-  title = {TriDet: Temporal Action Detection with Relative Boundary Modeling},
-  author = {Shi, Dingfeng and Zhong, Yujie and Cao, Qiong and Ma, Lin and Li, Jia and Tao, Dacheng},
-  journal = {arXiv preprint arXiv:2303.07347},
-  year = {2023}
+@inproceedings{shi2023tridet,
+  title={TriDet: Temporal Action Detection with Relative Boundary Modeling},
+  author={Shi, Dingfeng and Zhong, Yujie and Cao, Qiong and Ma, Lin and Li, Jia and Tao, Dacheng},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={18857--18866},
+  year={2023}
 }
 ```
  
