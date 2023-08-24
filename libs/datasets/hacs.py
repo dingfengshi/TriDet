@@ -146,13 +146,9 @@ class HacsDataset(Dataset):
 
         # load features
         if self.backbone_type == 'i3d':
-            with h5py.File(self.feat_folder, 'r') as h5_fid:
-                feats = np.asarray(
-                    h5_fid[video_item['id']][()],
-                    dtype=np.float32
-                )
+            filename = os.path.join(self.feat_folder, self.file_prefix + video_item['id'] + self.file_ext)
+            feats = np.load(filename, allow_pickle=True).astype(np.float32)
         else:
-
             if self.backbone_type == 'slowfast':
                 filename = os.path.join(self.feat_folder, video_item['id'] + self.file_ext)
                 feats = np.load(filename, allow_pickle=True)
