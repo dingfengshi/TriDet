@@ -22,7 +22,7 @@ To quickly get start with the model architecture, you can focus mainly on the fo
 - `libs/modeling/meta_archs.py`
 
 ## Update Log
-
+- 2023.9.14 An extended version is updated to [Arxiv](https://arxiv.org/abs/2309.05590) 
 - 2023.3.16 We release the code and the
   pretrained [checkpoints](https://drive.google.com/drive/folders/1eVROG6z-vHtm4AnXsh4N8ruUKkAidLqZ?usp=sharing).
 - 2023.3.14 The pre-print version of our [paper](https://arxiv.org/abs/2303.07347) is updated to Arxiv.
